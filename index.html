@@ -679,13 +679,16 @@
             showThinking(chatId);
             sendButton.disabled = true;
             const history = chatHistories[chatId];
-            const contents = history.filter(msg => msg.text !== 'Thinking...').map(msg => ({
-                role: msg.sender === 'user' ? 'user' : 'model',
-                parts: [{ text: msg.text }, ...(msg.imageUrl ? [{ inlineData: { mimeType: 'image/jpeg', data: msg.imageUrl.split(',')[1] } }] : [])]
-            })).concat({
+            const contents = history.filter(msg => msg.text !== 'Thinking...').map(msg => {
+                const parts = msg.imageUrl ? [{ text: msg.text }, { inlineData: { mimeType: 'image/jpeg', data: msg.imageUrl.split(',')[1] } }] : [{ text: msg.text }];
+                return {
+                    role: msg.sender === 'user' ? 'user' : 'model',
+                    parts: parts
+                };
+            }).concat({
                 role: 'user',
-                parts: [{ text: userMessage }, ...(pendingImage ? [{ inlineData: { mimeType: 'image/jpeg', data: pendingImage.split(',')[1] } }] : [])]
-            }));
+                parts: pendingImage ? [{ text: userMessage }, { inlineData: { mimeType: 'image/jpeg', data: pendingImage.split(',')[1] } }] : [{ text: userMessage }]
+            });
 
             let prompt = userMessage;
             if (deepResearchMode) {
