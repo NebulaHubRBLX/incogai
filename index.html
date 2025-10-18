@@ -25,7 +25,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a; /* Incognito-like deep black */
+            background-color: #0a0a0a; /* Grok-like deep black */
             color: #E0E0E0;
             display: flex;
             height: 100vh;
@@ -70,7 +70,7 @@
 
         .sidebar-header svg {
             margin-right: 10px;
-            fill: #1DA1F2; /* Incognito blue accent */
+            fill: #1DA1F2; /* Grok blue accent */
             width: 28px;
             height: 28px;
         }
@@ -450,8 +450,8 @@
         }
 
         /* SVG for Incognito header */
-        .Incognito-icon {
-            transform: rotate(0deg);
+        .incognito-icon {
+            transform: rotate(-15deg);
         }
 
         /* Prism line numbers customization */
@@ -501,10 +501,10 @@
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <svg class="Incognito-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <svg class="incognito-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
             </svg>
-            Incognito
+            Incognito AI
         </div>
 
         <button class="new-chat-button" id="newChatButton">
@@ -685,7 +685,7 @@
             })).concat({
                 role: 'user',
                 parts: [{ text: userMessage }, ...(pendingImage ? [{ inlineData: { mimeType: 'image/jpeg', data: pendingImage.split(',')[1] } }] : [])]
-            });
+            }));
 
             let prompt = userMessage;
             if (deepResearchMode) {
@@ -839,7 +839,7 @@
         // Init
         document.addEventListener('DOMContentLoaded', () => {
             loadChat(currentChatId);
-            addMessage("Hello! I'm Incognito, built by xAI. How can I help?", 'ai', currentChatId, true);
+            addMessage("Hello! I am your Incognito AI Assistant. How can I help you start this new chat?", 'ai', currentChatId, true);
             textInput.focus();
         });
 
