@@ -685,7 +685,7 @@
             })).concat({
                 role: 'user',
                 parts: [{ text: userMessage }, ...(pendingImage ? [{ inlineData: { mimeType: 'image/jpeg', data: pendingImage.split(',')[1] } }] : [])]
-            }));
+            });
 
             let prompt = userMessage;
             if (deepResearchMode) {
